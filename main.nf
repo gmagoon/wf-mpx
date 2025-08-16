@@ -172,7 +172,6 @@ process medaka_polish {
         tuple val(sample_id), val(type), path("medaka/denovo.consensus.fasta"), path("${sample_id}_assembly_mapped.bam")
     script:
     """
-//    medaka_consensus -i ${sample_id}_restricted.fastq -t 1 -d flye/assembly.fasta \
     medaka_consensus -i ${sample_id}.bam -t 1 -d flye/assembly.fasta \
         -m ${basecall_model}:consensus
     mv medaka/consensus.fasta medaka/denovo.consensus.fasta
