@@ -95,7 +95,7 @@ process medakaVariants {
     script:
     """
     medaka inference ${sample_id}.bam ${sample_id}.hdf --model ${basecall_model}:consensus
-    medaka vcf --gvcf ${reference} ${sample_id}.hdf ${sample_id}.vcf --verbose
+    medaka vcf --gvcf ${sample_id}.hdf ${reference} ${sample_id}.vcf --verbose
     medaka tools annotate --debug --pad 25 ${sample_id}.vcf ${reference} ${sample_id}.bam ${sample_id}.annotate.vcf
     bcftools filter -e "ALT='.'" ${sample_id}.annotate.vcf | bcftools filter -o ${sample_id}.annotate.filtered.vcf -O v -e "INFO/DP<${params.min_coverage}" -
     # vcf-annotator ${sample_id}.annotate.filtered.vcf ${genbank} > ${sample_id}.vcf-annotator.vcf
