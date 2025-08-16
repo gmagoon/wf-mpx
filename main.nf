@@ -130,7 +130,8 @@ process flyeAssembly {
         tuple val(sample_id), val(type), path("${sample_id}.bam"), path("${sample_id}.bam.bai")
         path reference
     output:
-        tuple val(sample_id), val(type), path("flye/assembly.fasta"), path("${sample_id}_restricted.fastq"), path(reference)
+//        tuple val(sample_id), val(type), path("flye/assembly.fasta"), path("${sample_id}_restricted.fastq"), path(reference)
+        tuple val(sample_id), val(type), path("flye/assembly.fasta"), path("${sample_id}.bam"), path(reference)
     script:
     """
     samtools bam2fq ${sample_id}.bam > ${sample_id}_restricted.fastq
